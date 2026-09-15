@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Golpe al banco de Paleto</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Roboto,Arial,sans-serif;color:#e1e1e1;background:#0b041a linear-gradient(45deg,#0b041a,#0e112b,#1a1030,#0e0520);background-size:400% 400%;animation:bg 12s ease-in-out infinite;padding:22px 16px 40px}
+@keyframes bg{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+.grid{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;background-image:linear-gradient(rgba(130,140,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(130,140,255,.05) 1px,transparent 1px);background-size:28px 28px}
+.w{max-width:960px;margin:0 auto;position:relative}
+.hero{position:relative;overflow:hidden;border:1px solid #2c2550;border-radius:14px;padding:26px 28px;background:linear-gradient(135deg,#1c1339,#0f0c22)}
+.hero:before{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,59,78,.22),transparent 70%)}
+.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:3px;color:#ff5a6a;border:1px solid #ff5a6a;padding:3px 10px;border-radius:4px}
+h1{position:relative;font-size:34px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#fff;margin:12px 0 6px;line-height:1.1}
+h1 span{color:#f5c542}
+.sub{position:relative;color:#a9a3c9;font-size:15px}
+.stamp{position:absolute;right:26px;top:24px;transform:rotate(-12deg);border:3px solid rgba(255,59,78,.75);color:rgba(255,90,106,.9);font-weight:900;letter-spacing:4px;padding:6px 14px;border-radius:6px;font-size:14px}
+.stats{position:relative;display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.stat{flex:1 1 150px;background:#120e28;border:1px solid #2c2550;border-radius:10px;padding:12px 14px}
+.stat b{display:block;font-size:24px;font-weight:900;color:#fff}
+.stat small{color:#8d86b3;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+h2{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#8d86b3;margin:32px 0 14px}
+h2:after{content:"";flex:1;height:1px;background:#2c2550}
+.reqs,.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.req{display:flex;align-items:center;gap:12px;background:#120e28;border:1px solid #2c2550;border-radius:10px;padding:12px}
+.req b{display:block;color:#fff;font-size:14px}
+.req span{color:#9a94bf;font-size:12.5px}
+.ic{flex:none;width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.gold{background:rgba(245,197,66,.12);color:#f5c542}
+.red{background:rgba(255,59,78,.13);color:#ff5a6a}
+.cyan{background:rgba(53,208,255,.12);color:#35d0ff}
+.green{background:rgba(64,214,130,.12);color:#40d682}
+.violet{background:rgba(160,130,255,.14);color:#b39cff}
+.step{display:flex;gap:16px;margin-bottom:14px}
+.num{flex:none;width:42px;height:42px;border-radius:50%;background:#1d1640;border:2px solid #5b4bb8;color:#fff;font-weight:900;font-size:17px;display:flex;align-items:center;justify-content:center}
+.box{flex:1;min-width:0;background:#120e28;border:1px solid #2c2550;border-radius:12px;padding:14px 16px}
+.box h3{font-size:17px;color:#fff;margin-bottom:5px}
+.box h3 i{color:#8d86b3;margin-right:6px}
+.box p{color:#b3aecd;font-size:14px;line-height:1.55}
+.time{float:right;margin-left:10px;font-size:12px;font-weight:700;color:#f5c542;border:1px solid rgba(245,197,66,.4);padding:2px 9px;border-radius:20px}
+.routes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+@media(max-width:640px){.routes{grid-template-columns:1fr}.stamp{display:none}h1{font-size:26px}}
+.route{border:1px solid;border-radius:12px;padding:14px 14px 12px}
+.sig{background:linear-gradient(160deg,rgba(53,208,255,.10),rgba(53,208,255,.02));border-color:rgba(53,208,255,.35)}
+.fue{background:linear-gradient(160deg,rgba(255,59,78,.12),rgba(255,59,78,.02));border-color:rgba(255,59,78,.4)}
+.route h4{font-size:14px;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.sig h4{color:#35d0ff}.fue h4{color:#ff5a6a}
+.route ul{list-style:none}
+.route li{position:relative;color:#cdc9e2;font-size:13.5px;line-height:1.45;padding:5px 0 5px 24px}
+.route li i{position:absolute;left:0;top:7px;width:16px;text-align:center}
+.sig li i{color:#35d0ff}.fue li i{color:#ff5a6a}
+.route li em{font-style:normal;color:#f5c542;font-weight:700}
+.pill{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:20px}
+.ok{background:rgba(64,214,130,.15);color:#40d682}.bad{background:rgba(255,59,78,.15);color:#ff5a6a}
+.fall{margin-top:10px;font-size:13px;color:#f5c542;background:rgba(245,197,66,.07);border:1px dashed rgba(245,197,66,.45);border-radius:8px;padding:9px 12px;line-height:1.45}
+.deps{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 10px}
+.dep{flex:1 1 90px;text-align:center;background:#0d0a1f;border:1px solid #3a2f6e;border-radius:10px;padding:12px 6px}
+.dep i{font-size:22px;color:#8d86b3}
+.dep b{display:block;color:#fff;font-size:13px;margin-top:6px}
+.dep small{color:#ff5a6a;font-size:11px}
+.loot{border-color:#f5c542;box-shadow:0 0 18px rgba(245,197,66,.25)}
+.loot i,.loot small{color:#f5c542}
+.alert{margin-top:30px;border:1px solid rgba(251,255,0,.45);background:rgba(251,255,0,.05);border-radius:12px;padding:16px 20px}
+.alert h3{color:#fbff00;font-size:15px;letter-spacing:3px;margin-bottom:8px}
+.alert li{color:#d8d5b6;font-size:14px;line-height:1.5;margin:6px 0 6px 18px}
+.alert b{color:#fff}
+.foot{text-align:center;color:#5d5783;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="w">
+
+<div class="hero">
+  <div class="stamp">CONFIDENCIAL</div>
+  <span class="tag">GOLPE</span>
+  <h1>Asalto al banco <span>de Paleto</span></h1>
+  <p class="sub"><i class="fa fa-university"></i>&nbsp; Blaine County Savings · Paleto Bay</p>
+  <div class="stats">
+    <div class="stat"><b>5+</b><small>Miembros</small></div>
+    <div class="stat"><b>2</b><small>Vías de entrada</small></div>
+    <div class="stat"><b>4</b><small>Cajas que reventar</small></div>
+    <div class="stat"><b><i class="fa fa-money"></i></b><small>Dinero negro</small></div>
+  </div>
+</div>
+
+<h2>Qué necesitáis</h2>
+<div class="reqs">
+  <div class="req"><div class="ic gold"><i class="fa fa-users"></i></div><div><b>5 miembros o más</b><span>Toda la banda preparada</span></div></div>
+  <div class="req"><div class="ic red"><i class="fa fa-wrench"></i></div><div><b>Taladro</b><span>Imprescindible en las dos vías</span></div></div>
+  <div class="req"><div class="ic cyan"><i class="fa fa-tablet"></i></div><div><b>Tablet</b><span>Para entrar por sigilo</span></div></div>
+  <div class="req"><div class="ic violet"><i class="fa fa-car"></i></div><div><b>Vehículo de huida</b><span>El perista está lejos</span></div></div>
+  <div class="req"><div class="ic green"><i class="fa fa-shield"></i></div><div><b>Policía de servicio</b><span>Sin policía no se puede iniciar</span></div></div>
+  <div class="req"><div class="ic gold"><i class="fa fa-suitcase"></i></div><div><b>Bolsillos ligeros</b><span>Si vais cargados no podréis entrar</span></div></div>
+</div>
+
+<h2>El plan, paso a paso</h2>
+
+<div class="step"><div class="num">1</div><div class="box">
+  <span class="time"><i class="fa fa-clock-o"></i> 7:30</span>
+  <h3><i class="fa fa-map-marker"></i>Llegad al banco</h3>
+  <p>Id al Blaine County Savings de Paleto Bay. Al llegar, elegid cómo vais a abrir la bóveda.</p>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="box">
+  <h3><i class="fa fa-lock"></i>Abrid la bóveda</h3>
+  <div class="routes">
+    <div class="route sig">
+      <h4><i class="fa fa-user-secret"></i> Sigilo</h4>
+      <ul>
+        <li><i class="fa fa-bolt"></i>Cortad los cables del cuadro eléctrico del patio de luces, con la tablet en la mano. <em>1:30</em></li>
+        <li><i class="fa fa-unlock-alt"></i>Hackead el panel que hay junto a la bóveda. <em>0:45</em></li>
+        <li><i class="fa fa-eye-slash"></i>La bóveda se abre en silencio. Nadie avisa todavía.</li>
+      </ul>
+      <span class="pill ok">La policía llega más tarde</span>
+    </div>
+    <div class="route fue">
+      <h4><i class="fa fa-fire"></i> Fuerza</h4>
+      <ul>
+        <li><i class="fa fa-wrench"></i>Taladrad la caja fuerte de la bóveda, con el taladro en la mano. <em>15:00</em></li>
+        <li><i class="fa fa-bell"></i>La alarma salta en cuanto empezáis.</li>
+        <li><i class="fa fa-shield"></i>Se avisa a la policía desde el primer momento.</li>
+      </ul>
+      <span class="pill bad">Policía desde el principio</span>
+    </div>
+  </div>
+  <div class="fall"><i class="fa fa-exclamation-triangle"></i>&nbsp; Si falláis el sigilo o se os acaba el tiempo, no perdéis el golpe: pasáis a la vía de fuerza.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="box">
+  <h3><i class="fa fa-th-large"></i>Reventad las cajas de seguridad</h3>
+  <p>Dentro hay cuatro cajas. Tenéis <b>1 minuto</b> para taladrar cada una y <b>cada caja avisa a la policía</b>. El botín está en la última.</p>
+  <div class="deps">
+    <div class="dep"><i class="fa fa-archive"></i><b>Caja 1</b><small>1:00 · avisa</small></div>
+    <div class="dep"><i class="fa fa-archive"></i><b>Caja 2</b><small>1:00 · avisa</small></div>
+    <div class="dep"><i class="fa fa-archive"></i><b>Caja 3</b><small>1:00 · avisa</small></div>
+    <div class="dep loot"><i class="fa fa-star"></i><b>Caja 4</b><small>BOTÍN</small></div>
+  </div>
+  <p>Al abrir la cuarta, coged la bolsa. Tenéis <b>1:30</b> para recogerla.</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="box">
+  <span class="time"><i class="fa fa-clock-o"></i> 22:30</span>
+  <h3><i class="fa fa-anchor"></i>Llevad la bolsa al perista</h3>
+  <p>Salid de Paleto y entregad la bolsa al perista del puerto de Los Santos. Quien lleve la bolsa es quien tiene que entregarla.</p>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="box">
+  <h3><i class="fa fa-money"></i>Cobrad</h3>
+  <p>El perista os paga en <b style="color:#f5c542">dinero negro</b>.</p>
+</div></div>
+
+<h2>Consejos de la banda</h2>
+<div class="tips">
+  <div class="req"><div class="ic cyan"><i class="fa fa-eye"></i></div><div><b>Un vigía fuera</b><span>Que avise cuando llegue la policía</span></div></div>
+  <div class="req"><div class="ic gold"><i class="fa fa-clock-o"></i></div><div><b>No os entretengáis</b><span>La puerta de la bóveda se cierra sola</span></div></div>
+  <div class="req"><div class="ic violet"><i class="fa fa-road"></i></div><div><b>Huida preparada</b><span>El camino al puerto es largo</span></div></div>
+  <div class="req"><div class="ic red"><i class="fa fa-suitcase"></i></div><div><b>Proteged la bolsa</b><span>Sin bolsa no hay cobro</span></div></div>
+</div>
+
+<div class="alert">
+  <h3><i class="fa fa-exclamation-circle"></i> IMPORTANTE</h3>
+  <ul>
+    <li>El golpe se inicia desde el punto <b>Robo a Paleto Bank</b>, aquí al lado.</li>
+    <li>Si iniciáis el golpe, tendréis que esperar un tiempo antes de hacer otro, <b>aunque no lo completéis</b>.</li>
+    <li>Si se acaba el tiempo de una fase, el golpe se pierde.</li>
+  </ul>
+</div>
+
+<p class="foot">GTAHUB · Golpe al banco de Paleto</p>
+</div>
+</body>
+</html>
